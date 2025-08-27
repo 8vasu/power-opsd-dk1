@@ -1,0 +1,24 @@
+services:
+  db:
+    image: timescale/timescaledb:latest-pg14
+    container_name: opsd_db
+    restart: always
+    env_file: .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./src/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  app:
+    build: .
+    container_name: opsd_app
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    env_file: .env
+    command: tail -f /dev/null
+
+volumes:
+  db_data:

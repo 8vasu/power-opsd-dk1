@@ -1,0 +1,20 @@
+#+TITLE: power-opsd-dk1 Notes
+#+AUTHOR: Soumendra Ganguly
+
+* Overview
+This project ingests hourly DK1 electricity prices from the
+Open Power System Data (OPSD) repository, stores them in
+TimescaleDB, runs a quadratic programming optimization,
+and plots the results.
+
+* Big Picture of Files
+- docker-compose.yml :: Defines services (TimescaleDB + app).
+- Dockerfile :: Python environment with dependencies.
+- init.sql :: Database schema for DK1 prices.
+- requirements.txt :: Python dependencies (pandas, matplotlib, cvxpy, etc).
+- fetch_and_store.py :: Downloads OPSD CSV and appends DK1 prices into DB.
+- optimize.py :: Reads prices, runs quadratic optimization (allocation).
+- plot.py :: Creates a dual-axis plot of prices and allocations.
+- Makefile :: One-command build/run pipeline.
+- README.md :: Documentation and usage instructions.
+- notes.org :: These notes (big picture, literate programming style).

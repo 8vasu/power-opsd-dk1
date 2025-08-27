@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS dk1_prices (
+    ts TIMESTAMPTZ PRIMARY KEY,
+    price_eur_per_mwh DOUBLE PRECISION
+);
